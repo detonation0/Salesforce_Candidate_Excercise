@@ -1,104 +1,104 @@
 <apex:page controller="ImportOppsController"
-	showHeader="false"
-	sidebar="false"
-	standardStylesheets="false"
-	docType="HTML-5.0">
+    showHeader="false"
+    sidebar="false"
+    standardStylesheets="false"
+    docType="HTML-5.0">
 <head>
-	<title>Opportunity Import</title>
-	<meta name="viewport" content="initial-scale=1, maximum-scale=1"/>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+    <title>Opportunity Import</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
 
-	<style>
-		ul.alert {
-			list-style: none !important;
-		}
+    <style>
+        ul.alert {
+            list-style: none !important;
+        }
 
-		.alert {
-			margin-bottom: -20px !important;
-			margin-top: 20px !important;
-		}
+        .alert {
+            margin-bottom: -20px !important;
+            margin-top: 20px !important;
+        }
 
-		.messageTable {
-			width: 100% !important;
-		}
-	</style>
+        .messageTable {
+            width: 100% !important;
+        }
+    </style>
 </head>
 
 <body>
-	<div class="container">
-		<div class="page-header">
-  			<h3>Opportunity Import</h3>
-		</div>
+    <div class="container">
+        <div class="page-header">
+              <h3>Opportunity Import</h3>
+        </div>
 
-		<apex:form id="accountList">
-			<apex:actionStatus id="oppImportStatus">
-      			<apex:facet name="stop">
-       				<apex:outputPanel >
-        				<apex:commandLink styleClass="btn btn-info"
-										  value="Import Opportunities"
-										  action="{!getOppsFromServer}"
-										  rerender="accountList,messages"
-										  status="oppImportStatus"/>
-       				</apex:outputPanel>
-      			</apex:facet>
-      			<apex:facet name="start">
-       				<apex:outputPanel >
-        				<apex:outputLink styleClass="btn btn-info" disabled="true">
-							Working...
-							&nbsp;<i class="fa fa-spinner fa-spin" style="font-size:14pt"></i>
-						</apex:outputLink>
-       				</apex:outputPanel>
-      			</apex:facet>
-     		</apex:actionStatus>
+        <apex:form id="accountList">
+            <apex:actionStatus id="oppImportStatus">
+                  <apex:facet name="stop">
+                       <apex:outputPanel >
+                        <apex:commandLink styleClass="btn btn-info"
+                                          value="Import Opportunities"
+                                          action="{!getOppsFromServer}"
+                                          rerender="accountList,messages"
+                                          status="oppImportStatus"/>
+                       </apex:outputPanel>
+                  </apex:facet>
+                  <apex:facet name="start">
+                       <apex:outputPanel >
+                        <apex:outputLink styleClass="btn btn-info" disabled="true">
+                            Working...
+                            &nbsp;<i class="fa fa-spinner fa-spin" style="font-size:14pt"></i>
+                        </apex:outputLink>
+                       </apex:outputPanel>
+                  </apex:facet>
+             </apex:actionStatus>
 
-			<apex:pageMessages id="messages" escape="false"/>
+            <apex:pageMessages id="messages" escape="false"/>
 
-			<apex:pageBlock id="accountResults" mode="maindetail">
-				<div class="table-responsive" style="margin-top:20px;">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>Account</th>
-								<th>Opportunity</th>
-								<th>Location</th>
-								<th>Quote</th>
-							</tr>
-						</thead>
-						<tbody>
-							<apex:repeat value="{!oppys}" var="op">
-								<tr>
-									<td>
-										<apex:outputLink value="/{!op.Account.Id}"
-														 target="_blank">
-											{!op.Account.Name}
-										</apex:outputLink>
-									</td>
-									<td>
-										<apex:outputLink value="/{!op.Id}"
-														 target="_blank">
-											{!op.Name}
-										</apex:outputLink>
-									</td>
-									<td>
-										{!op.Account.BillingStreet}
-										{!op.Account.BillingCity}
-										{!op.Account.BillingState}
-										{!op.Account.BillingPostalCode}
-									</td>
-									<td>
-										<apex:outputField value="{!op.Quote__c}"/>
-									</td>
-								</tr>
-							</apex:repeat>
-						</tbody>
-					</table>
-				</div>
-			</apex:pageBlock>
-		</apex:form>
-	</div>
+            <apex:pageBlock id="accountResults" mode="maindetail">
+                <div class="table-responsive" style="margin-top:20px;">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Account</th>
+                                <th>Opportunity</th>
+                                <th>Location</th>
+                                <th>Quote</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <apex:repeat value="{!oppys}" var="op">
+                                <tr>
+                                    <td>
+                                        <apex:outputLink value="/{!op.Account.Id}"
+                                                         target="_blank">
+                                            {!op.Account.Name}
+                                        </apex:outputLink>
+                                    </td>
+                                    <td>
+                                        <apex:outputLink value="/{!op.Id}"
+                                                         target="_blank">
+                                            {!op.Name}
+                                        </apex:outputLink>
+                                    </td>
+                                    <td>
+                                        {!op.Account.BillingStreet}
+                                        {!op.Account.BillingCity}
+                                        {!op.Account.BillingState}
+                                        {!op.Account.BillingPostalCode}
+                                    </td>
+                                    <td>
+                                        <apex:outputField value="{!op.Quote__c}"/>
+                                    </td>
+                                </tr>
+                            </apex:repeat>
+                        </tbody>
+                    </table>
+                </div>
+            </apex:pageBlock>
+        </apex:form>
+    </div>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </body>
 </apex:page>
