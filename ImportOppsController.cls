@@ -9,8 +9,8 @@ public class ImportOppsController
 	{
 		// On page load, get all accounts.
 		accounts = [
-			SELECT Id, Name, Trade_Style__c, Year_Started__c, Photo_URL__c, Website,
-				BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry
+			SELECT Id, Name, BillingStreet, BillingCity, BillingState,
+				BillingPostalCode, BillingCountry
 			FROM Account
 			ORDER BY Name ASC
 		];
